@@ -1,0 +1,22 @@
+{
+	"name": "myjw3b/helpful",
+	"type": "project",
+	"description": "Some useful classes and functions to help with your everyday php building.",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "John Brittain III",
+			"email": "Yohn@coming-soon.com",
+			"homepage": "https://github.com/Yohn",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"JW3B\\erday\\" : "erday/"
+		}
+	},
+	"require": {
+		"php": "^8.0"
+	}
+}
