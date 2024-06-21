@@ -59,6 +59,8 @@ class Helpful {
 		return $uri;
 	}
 
+
+
 	public static function mail2($to, $subject, $message, $header=array()){
 		$headers[] = 'Content-type: text/html; charset=UTF-8'; //iso-8859-1';
 		//$headers[] = 'From: "'.Config::$c['site_name'].'" <'.$Config::$c['site_email'].'>';
@@ -70,6 +72,41 @@ class Helpful {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	// credits to
+	// https://www.if-not-true-then-false.com/2009/php-tip-convert-stdclass-object-to-multidimensional-array-and-convert-multidimensional-array-to-stdclass-object/
+	public static function objectToArray($d) {
+		if (is_object($d)) {
+			// Gets the properties of the given object
+			// with get_object_vars function
+			$d = get_object_vars($d);
+		}
+		if (is_array($d)) {
+			/*
+			* Return array converted to object
+			* Using __FUNCTION__ (Magic constant)
+			* for recursive call
+			*/
+			return array_map(__FUNCTION__, $d);
+		} else {
+			// Return array
+			return $d;
+		}
+	}
+
+	public static function arrayToObject($d) {
+		if (is_array($d)) {
+			/*
+			* Return array converted to object
+			* Using __FUNCTION__ (Magic constant)
+			* for recursive call
+			*/
+			return (object) array_map(__FUNCTION__, $d);
+		} else {
+			// Return object
+			return $d;
 		}
 	}
 }
