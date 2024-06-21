@@ -4,6 +4,13 @@ use JW3B\erday\Helpful;
 
 class Helpful_HTML extends Helpful {
 
+	public static function svg_img($width='100', $height='100', $text=''){
+		return '<svg width="'.$width.'" height="'.$height.'">
+			<rect x="0" y="0" width="'.$width.'" height="'.$height.'" fill="white"/>
+			<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" stroke="black" stroke-width="1px" fill="currentColor">'.$text.'</text>
+		</svg>';
+	}
+
 	public static function breadcrumb($pgs, $right=false, $add_class=''){
 		echo '<ol class="breadcrumb'.$add_class.'">';
 		if(is_array($pgs)){

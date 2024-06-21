@@ -3,6 +3,23 @@ namespace JW3B\erday;
 
 class Helpful {
 
+	public static function random_string($length = 10, $lowercase = true, $uppercase = true, $number = true): string {
+		$string = '';
+		if ($number)
+			$string .= '0123456789';
+		if ($lowercase)
+			$string .= 'abcdefghijklmnopqrstuvwxyz';
+		if ($uppercase)
+			$string .= strtoupper($string);
+		return substr(
+						str_shuffle(
+							str_repeat($x = $string,
+								ceil($length / strlen($x))
+							)
+						),
+						1, $length);
+	}
+
 	public static function mk_dir_writable($dir){
 		if(!is_dir($dir)){
 			if (!mkdir($dir, 0777)) { // attempt to make it with read, write, execute permissions
@@ -19,6 +36,83 @@ class Helpful {
 
 	public static function p($t){
 		return '<pre>'.print_r($t, 1).'</pre>';
+	}
+	/**
+	 * Read all files and folders
+	 * @param string path without the trailing slash
+	 * @para string match the files to find, just leave empty idr what this did
+	 *
+	 * @return array ['file'] deep
+	 */
+
+	public static function tree($path, $match=''){
+		$list['file'] = array();
+		// Find the real directory part of the path, and set the match parameter
+		$last=strrpos($path,"/");
+		if(!is_dir($path)){
+			$match=substr($path,$last);
+			while(!is_dir($path=substr($path,0,$last)) && $last!==false)
+				$last=strrpos($path,"/",-1);
+		}
+		if(empty($match)) $match="/*";
+		if(!$path=realpath($path)) return [];
+
+		// List files
+		foreach(glob($path.$match) as $file){
+			if(is_dir($file)){
+				$more = helpful::tree($file, $match);
+				$list['dir'][substr($file,strrpos($file,"/",-1)+1)] = $more;
+				$deeper = $more;
+				$list['file'] = array_merge($list['file'], $deeper['file']);
+			} else {
+				$list['file'][]=str_replace($_SERVER['DOCUMENT_ROOT'], '', $path).'/'.substr($file,strrpos($file,"/")+1);
+			}
+		}
+		return @$list;
+	}
+
+	public static function get_mime_type($file){
+		switch($file['type']){
+			case "image/jpeg":
+			case "image/jpg":
+			case "image/pjpeg":
+				return 'j';
+			case "image/webp":
+				return 'w';
+			case "image/png":
+			case "image/x-png":
+				return 'p';
+			case "image/gif":
+				return 'g';
+			default:
+				return 'Incorrect file type uploaded. Only png, gif, and jpg files are supported.';
+		}
+	}
+
+	public static function make_yr_directory($destination){
+		$year = date('Y', time());
+		$month = date('n', time());
+		if(!is_dir($destination.$year.'/')){
+			@mkdir($destination.$year.'/', 0777);
+		}
+		if(!is_dir($destination.$year.'/'.$month.'/')){
+			@mkdir($destination.$year.'/'.$month.'/', 0777);
+		}
+		return $destination.$year.'/'.$month.'/';
+	}
+
+	public static function removeEmptySubfolders($path){
+		if(substr($path,-1)!= DIRECTORY_SEPARATOR){
+			$path .= DIRECTORY_SEPARATOR;
+		}
+		$d2 = array('.','..');
+		$dirs = array_diff(glob($path.'*', GLOB_ONLYDIR),$d2);
+		foreach($dirs as $d){
+			helpful::removeEmptySubfolders($d);
+		}
+		if(count(array_diff(glob($path.'*'),$d2))===0){
+			rmdir($path);
+		}
 	}
 
 	public static function get_large_img($img){
@@ -38,6 +132,9 @@ class Helpful {
 	public static function clean_text($str, $nl2br=false){
 		$ret = $nl2br == false ? trim(htmlentities(stripslashes($str))) : nl2br(trim(htmlentities(stripslashes($str))));
 		return $ret;
+	}
+	public static function clean($str, $nl2br=''){
+		return helpful::clean_text($str, $nl2br);
 	}
 
 	public static function form_element_name($str){
@@ -95,6 +192,38 @@ class Helpful {
 			}
 		}
 		return $file_ary;
+	}
+
+	/** Converts image to webp image
+	 *
+	 * @param string $source - path to original image
+	 * @param int $quality - 0-100 - 0 being low quality 100 being the best quality
+	 * @param bool $removeOld - removes original image
+	 * @return string path/to/image.webp
+	 */
+	public static function webpImage($source, $quality = 75, $removeOld = false){
+		$dir = pathinfo($source, PATHINFO_DIRNAME);
+		$name = pathinfo($source, PATHINFO_FILENAME);
+		$destination = $dir . DIRECTORY_SEPARATOR . $name . '.webp';
+		$info = getimagesize($source);
+		$isAlpha = false;
+		if ($info['mime'] == 'image/jpeg')
+			$image = imagecreatefromjpeg($source);
+		elseif ($isAlpha = $info['mime'] == 'image/gif') {
+			$image = imagecreatefromgif($source);
+		} elseif ($isAlpha = $info['mime'] == 'image/png') {
+			$image = imagecreatefrompng($source);
+		} else {
+			return $source;
+		}
+		if($isAlpha){
+			imagepalettetotruecolor($image);
+			imagealphablending($image, true);
+			imagesavealpha($image, true);
+		}
+		imagewebp($image, $destination, $quality);
+		if ($removeOld && is_file($destination)) unlink($source);
+		return $destination;
 	}
 
 	public function resize_uploaded_image($file, $destination, $sizes=array('s' => '300', 'l' => '800')){
