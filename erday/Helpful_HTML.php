@@ -78,6 +78,54 @@ class Helpful_HTML extends Helpful {
 		return $ret;
 	}
 
+	public static function browse($pageNum, $totalPerPage, $howMany, $b4page, $afterPage="", $hideLast='', $extra=array()){
+		$divClass = (isset($extra['divClass'])) ? ' '.$extra['divClass'] : ' justify-content-center';
+		$b4 = (isset($extra['b4'])) ? $extra['b4'] : '';
+		$afterPg = isset($extra['after']) ? $extra['after'] : '';
+		$ret = '<nav aria-label="Paging Current Section">'.$b4.'
+			<ul class="pagination'.$divClass.'">';
+		$maxPage = ceil($howMany/$totalPerPage);
+		// first page
+		if ($pageNum == 1) {
+			$ret .= '<li class="page-item disabled"><a class="page-link">'.l('Prev').'</a></li>
+			<li class="page-item active"><a class="page-link">1</a></li>';
+		} else {
+			$prev = $pageNum-1;
+			$ret .= '<li class="page-item"><a class="page-link" href="'.$b4page.$prev.$afterPage.'">'.l('Prev').'</a></li>
+			<li class="page-item"><a class="page-link" a href="'.$b4page.'1'.$afterPage.'" title="'.l('Go To Page').' 1">1</a></li>';
+		}
+
+		for($x=$pageNum-3; $x<$pageNum+3; $x++){
+			if ($x > 1 && $x < $maxPage){
+				if ($x == $pageNum) {
+					$ret .= '<li class="page-item active"><a class="page-link">'.$x.'</a></li>';
+				} else {
+					$ret .= '<li class="page-item"><a class="page-link" href="'.$b4page.$x.$afterPage.'" title="'.l('Go To Page').' '.$x.'">'.$x.'</a></li>';
+				}
+			}
+		}
+		//lets hide the last page if the last page is the first page :)
+		if($maxPage != 0 && $hideLast == ''){
+			if($maxPage != 1){
+				// last page
+				if($pageNum == $maxPage){
+					$ret .= '<li class="page-item active"><a class="page-link">'.$maxPage.'</a></li>
+					<li class="page-item disabled"><a class="page-link">'.l('Next').'</a></li>';
+				} else {
+					$next = $pageNum+1;
+					$ret .= '<li class="page-item"><a class="page-link" href="'.$b4page.$maxPage.$afterPage.'" title="'.l('Go To Page').' '.$maxPage.'">'.$maxPage.'</a></li>
+					<li class="page-item"><a class="page-link" href="'.$b4page.$next.$afterPage.'">'.l('Next').'</a></li>';
+				}
+			} else {
+				$ret .= '<li class="disabled page-item disabled"><a class="page-link">'.l('Next').'</a></li>';
+			}
+		} else {
+			$ret .= '<li class="disabled page-item"><a class="page-link">'.l('Next').'</a></li>';
+		}
+		$ret .= '</ul>'.$afterPg.'</nav>';
+		return $ret;
+	}
+
 	// I didnt feel like writing my own AGAIN...
 	// http://css-tricks.com/snippets/php/pagination-function/
 	/*<ul class="pagination">
