@@ -119,8 +119,8 @@ class Helpful_Files {
 		return $file_ary;
 	}
 
-// http://stackoverflow.com/questions/1334613/how-to-recursively-zip-a-directory-in-php
-// zip('/folder/to/compress/', './compressed.zip');
+	// http://stackoverflow.com/questions/1334613/how-to-recursively-zip-a-directory-in-php
+	// zip('/folder/to/compress/', './compressed.zip');
 		/**
 	 * Zip function will
 	 *
@@ -154,3 +154,4 @@ class Helpful_Files {
 		}
 		return $zip->close();
 	}
+}
