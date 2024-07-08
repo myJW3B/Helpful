@@ -110,64 +110,14 @@ class Helpful_Images {
 			if(is_file($dir . $filename)){
 				return $this->resize_image($dir, $filename, $opts['sizes'], ['ext' => $check, 'make' => $make_webp], $opts['trim_filepath'] ?? '');
 			} else {
-				//copy($file['tmp_name'], $dir . $filename); // makes a binary file
-				//if(is_file($dir . $filename)){
-				//	return $this->resize_image($dir, $filename, $opts['sizes'], ['ext' => $check, 'make' => $make_webp], $opts['trim_filepath'] ?? '');
-				//} else {
-					return [
-						'error' => 'couldnt move uploaded file or copy the temp file to the destination.'
-					];
-				//}
+				return [
+					'error' => 'couldnt move uploaded file or copy the temp file to the destination.'
+				];
 			}
 		} else {
 			return 'Looks like there was an error uploading this file.';
 		}
 	}
-			//$year = date('Y', time());
-			//$month = date('n', time());
-			//if(!is_dir($dir.$year.'/')){
-			//	@mkdir($dir.$year.'/', 0777);
-			//}
-			//if(!is_dir($dir.$year.'/'.$month.'/')){
-			//	@mkdir($dir.$year.'/'.$month.'/', 0777);
-			//}
-			//$dir = $dir.$year.'/'.$month.'/';
-			//if(is_file($dir.$filename)){
-			//	$n = 0;
-			//	for(;;){
-			//		if(!is_file($dir.$n.$filename)){
-			//			$filename = $n.$filename;
-			//			break;
-			//		}
-			//		$n++;
-			//	}
-			//}
-			//list($width, $height, $typeM, $attr) = getimagesize($dir.$filename);
-			//$total_sizes = count($opts['sizes']);
-			//$created = array();
-			//foreach($opts['sizes'] as $pre => $size){
-			//	$new_file = $total_sizes > 1 ? $dir.$pre.'-'.$filename : $dir.$filename;
-			//	if($width > $size || $height > $size){
-			//		system("magick convert ".$dir.$filename." -resize ".$size."x".$size." -quality 100 ".$new_file);
-			//	} else if($new_file != $dir.$filename){
-			//		copy($dir.$filename, $new_file);
-			//	}
-			//	if($make_webp == true){
-			//		$file3 = str_replace('.', '-', $new_file).'.webp';
-			//		if(!str_ends_with($new_file, 'webp')){
-			//			system('magick "'.$new_file.'" -quality 80 -define webp:alpha-filtering=1 -define webp:alpha-quality=80 -define webp:lossless=true "'.$file3.'"');
-			//			// magick "'.$file2.'" -quality 80 -define webp:alpha-filtering=1 -define webp:alpha-quality=80 -define webp:lossless=true "'.$file3.'"
-			//			$new_file = $file3;
-			//		}
-			//	}
-			//	$created[$pre] = $new_file;
-			//}
-			//$not_found = false;
-			//foreach($created as $file2){
-			//	if($file2 != '' && !is_file($file2)){
-			//		$created['not_found'][] = $file2;
-			//	}
-			//}
 
 	/**
 	 * resize_image imagemagick is required
