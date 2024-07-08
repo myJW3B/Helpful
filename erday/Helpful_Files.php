@@ -6,6 +6,28 @@ use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 
 class Helpful_Files {
+
+	/**
+	 * puts a number before the filename
+	 *
+	 * @param string $dir  directory
+	 * @param string $name filename
+	 * @return string  -- dir/5filename - if 1-4 are already used.
+	 */
+	public static function check_file($dir,$name){
+		if(is_file($dir.$name)){
+			$n = 0;
+			for(;;){
+				if(!is_file($dir.$n.$name)){
+					$name = $n.$name;
+					break;
+				}
+				$n++;
+			}
+		}
+		return $name;
+	}
+
 	public static function mk_dir_writable($dir){
 		if(!is_dir($dir)){
 			if (!mkdir($dir, 0777)) { // attempt to make it with read, write, execute permissions
