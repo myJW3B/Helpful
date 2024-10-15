@@ -66,9 +66,9 @@ class Color {
 	 * @access protected
 	 * @static
 	 * @param float $value The value to fix.
-	 * @return integer Returns the fixed integer.
+	 * @return float|int Returns the fixed integer.
 	 */
-	protected static function fixRgbValue(float $value): int
+	protected static function fixRgbValue(float $value): float|int
 	{
 		return max(min(round($value), 255), 0);
 	}
@@ -97,7 +97,7 @@ class Color {
 	 * @param string $hex The HEX code to convert.
 	 * @return array Returns an associative array of values. The array will have 'red', 'green' and 'blue' keys.
 	 */
-	public static function hexToRgb(string $hex): array
+	public static function hexToRgb(string $hex): array|null
 	{
 		// Trim the '#' character if present.
 		$hex = ltrim($hex, '#');
@@ -120,9 +120,9 @@ class Color {
 		}
 		// Convert hex values to decimal and fix the RGB range.
 		return [
-			'red' => self::fixRgbValue(hexdec($hex['red'])),
-			'green' => self::fixRgbValue(hexdec($hex['green'])),
-			'blue' => self::fixRgbValue(hexdec($hex['blue']))
+			'red' => self::fixRgbValue(hexdec((string) $hex['red'])),
+			'green' => self::fixRgbValue(hexdec((string) $hex['green'])),
+			'blue' => self::fixRgbValue(hexdec((string) $hex['blue']))
 		];
 	}
 
@@ -134,9 +134,9 @@ class Color {
 	 * @param Color|string $start The start colour. This can be a Color object or a HEX code as a string.
 	 * @param Color|string $end The end colour. This can be a Color object or a HEX code as a string.
 	 * @param integer $steps The number of colours to return (including start and end colours).
-	 * @return array Returns an array of Color objects.
+	 * @return mixed Returns an array of Color objects.
 	 */
-	public static function range($start, $end, $steps = 10): array
+	public static function range($start, $end, $steps = 10): mixed
 	{
 		if (!$start instanceof Color) {
 			$startc = new Color;
@@ -290,7 +290,7 @@ class Color {
 	 * @param string $name The name of the variable to get.
 	 * @return mixed Returns the value of the requested variable.
 	 */
-	public function __get($name): null
+	public function __get($name): mixed
 	{
 		switch ($name) {
 			case 'red': return $this->red;

@@ -12,7 +12,7 @@ class SQL
 	 * @param int $after Number of digits after the decimal point.
 	 * @return string|array The formatted number or an error message.
 	 */
-	public static function decimal(string|float|int $str, int $length = 13, int $after = 2): string|array
+	public static function decimal(string|float|int $str='', int $length = 13, int $after = 2): string|array
 	{
 		if ($str === '') {
 			$str = '0.00';

@@ -84,7 +84,7 @@ class Str
 			$characters .= '0123456789';
 		}
 		if ($characters === '') {
-			throw new InvalidArgumentException('At least one character set must be enabled.');
+			throw new \InvalidArgumentException('At least one character set must be enabled.');
 		}
 		$charactersLength = strlen($characters);
 		$randomString = '';
@@ -123,7 +123,8 @@ class Str
 	 */
 	public static function parse_my_url(): array
 	{
-		$url = substr($_SERVER['REQUEST_URI'], 1);
+		$url = $_SERVER['REQUEST_URI'] ?? 'https://github.com';
+		$url = substr($url, 1);
 		$parts = explode('/', $url);
 		$uri = [];
 		foreach ($parts as $ui) {
@@ -160,9 +161,9 @@ class Str
 	 * ! https://www.if-not-true-then-false.com/2009/php-tip-convert-stdclass-object-to-multidimensional-array-and-convert-multidimensional-array-to-stdclass-object/
 	 *
 	 * @param mixed $d The object to convert.
-	 * @return array The converted array.
+	 * @return mixed The converted array.
 	 */
-	public static function objectToArray(mixed $d): array
+	public static function objectToArray(mixed $d): mixed
 	{
 		if (is_object($d)) {
 			$d = get_object_vars($d);

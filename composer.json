@@ -18,5 +18,12 @@
 	},
 	"require": {
 		"php": "^8.0"
+	},
+	"require-dev": {
+		"phpstan/phpstan": "^1.12"
+	},
+	"scripts": {
+		"analyse": "phpstan analyse",
+		"test": "phpunit tests"
 	}
 }

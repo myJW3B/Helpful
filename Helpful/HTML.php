@@ -145,33 +145,33 @@ class HTML {
 		$maxPage = ceil($howMany / $totalPerPage);
 		// First page
 		if ($pageNum === 1) {
-			$ret .= '<li class="page-item disabled"><a class="page-link">' . l('Prev') . '</a></li>
+			$ret .= '<li class="page-item disabled"><a class="page-link">Prev</a></li>
 			<li class="page-item active"><a class="page-link">1</a></li>';
 		} else {
 			$prev = $pageNum - 1;
-			$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . $prev . $afterPage, ENT_QUOTES) . '">' . l('Prev') . '</a></li>
-			<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . '1' . $afterPage, ENT_QUOTES) . '" title="' . l('Go To Page') . ' 1">1</a></li>';
+			$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . $prev . $afterPage, ENT_QUOTES) . '">Prev</a></li>
+			<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . '1' . $afterPage, ENT_QUOTES) . '" title="Go To Page 1">1</a></li>';
 		}
 		for ($x = $pageNum - 3; $x < $pageNum + 3; $x++) {
 			if ($x > 1 && $x < $maxPage) {
 				if ($x === $pageNum) {
 					$ret .= '<li class="page-item active"><a class="page-link">' . $x . '</a></li>';
 				} else {
-					$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . $x . $afterPage, ENT_QUOTES) . '" title="' . l('Go To Page') . ' ' . $x . '">' . $x . '</a></li>';
+					$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . $x . $afterPage, ENT_QUOTES) . '" title="Go To Page ' . $x . '">' . $x . '</a></li>';
 				}
 			}
 		}
 		if ($maxPage !== 0 && $hideLast === '') {
-			if ($pageNum === $maxPage) {
+			if ($pageNum === (int) $maxPage) {
 				$ret .= '<li class="page-item disabled"><a class="page-link">' . $maxPage . '</a></li>';
 			} else {
-				$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . $maxPage . $afterPage, ENT_QUOTES) . '" title="' . l('Go To Page') . ' ' . $maxPage . '">' . $maxPage . '</a></li>';
+				$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . $maxPage . $afterPage, ENT_QUOTES) . '" title="Go To Page ' . $maxPage . '">' . $maxPage . '</a></li>';
 			}
 		}
 		if ($pageNum < $maxPage) {
-			$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . ($pageNum + 1) . $afterPage, ENT_QUOTES) . '">' . l('Next') . '</a></li>';
+			$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . ($pageNum + 1) . $afterPage, ENT_QUOTES) . '">Next</a></li>';
 		} else {
-			$ret .= '<li class="page-item disabled"><a class="page-link">' . l('Next') . '</a></li>';
+			$ret .= '<li class="page-item disabled"><a class="page-link">Next</a></li>';
 		}
 		$ret .= '</ul></nav>';
 		return $ret;
