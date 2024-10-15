@@ -29,9 +29,9 @@ class HTML {
 	 * @param array $pgs Array of page links and titles.
 	 * @param array $right Array of right-aligned page links.
 	 * @param string $add_class Additional CSS classes for styling.
-	 * @return void
+	 * @return string
 	 */
-	public static function breadcrumb(array $pgs, array $right = [], string $add_class = ''): void
+	public static function breadcrumb(array $pgs, array $right = [], string $add_class = ''): string
 	{
 		$breadcrumb = '<ol class="breadcrumb' . htmlspecialchars($add_class, ENT_QUOTES) . '">';
 		if (is_array($pgs)) {
