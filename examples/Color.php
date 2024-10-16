@@ -1,7 +1,7 @@
 <?php
-use JW3B\erday\Helpful_Color;
+use JW3B\Helpful\Color;
 // include the colour class
-include __DIR__.'/../erday/Helpful_Color.php';
+include __DIR__.'/../Helpful/Color.php';
 
 //============================================================
 ?>
@@ -24,19 +24,19 @@ include __DIR__.'/../erday/Helpful_Color.php';
 	<h3>Create a Color object</h3>
 
 	<h5>Code</h5>
-	<pre><code>$c = new Helpful_Color(255, 0, 0);</code></pre>
+	<pre><code>$c = new Color(255, 0, 0);</code></pre>
 	<hr/>
 	<h3>Get a colour's HEX code</h3>
 
 	<h5>Code</h5>
-	<pre><code>$c = new Helpful_Color(255, 0, 0);
+	<pre><code>$c = new Color(255, 0, 0);
 print $c->getHex();
 print '&lt;br/&gt;';
 print $c->getHex(true);</code></pre>
 
 	<h5>Output</h5>
 	<p><?php
-	$c = new Helpful_Color(255, 0, 0);
+	$c = new Color(255, 0, 0);
 	print $c->getHex();
 	print '<br/>';
 	print $c->getHex(true);
@@ -45,22 +45,22 @@ print $c->getHex(true);</code></pre>
 	<h3>Create a Color object using a HEX code</h3>
 
 	<h5>Code</h5>
-	<pre><code>$c = new Helpful_Color();
+	<pre><code>$c = new Color();
 $c->setHex('#ff0000') // accepts 3-character or 6-character variants</code></pre>
 	<hr/>
 	<h3>Mix two colours</h3>
 
 	<h5>Code</h5>
-	<pre><code>$c1 = new Helpful_Color(255, 0, 0);
-$c2 = new Helpful_Color(0, 0, 204);
-$c3 = Helpful_Color::mix($c1, $c2);
+	<pre><code>$c1 = new Color(255, 0, 0);
+$c2 = new Color(0, 0, 204);
+$c3 = Color::mix($c1, $c2);
 print $c3->getHex(true);</code></pre>
 
 	<h5>Output</h5>
 	<p><?php
-	$c1 = new Helpful_Color(255, 0, 0);
-	$c2 = new Helpful_Color(0, 0, 204);
-	$c3 = Helpful_Color::mix($c1, $c2);
+	$c1 = new Color(255, 0, 0);
+	$c2 = new Color(0, 0, 204);
+	$c3 = Color::mix($c1, $c2);
 	print $c3->getHex(true);
 	?></p>
 
@@ -76,9 +76,9 @@ print $c3->getHex(true);</code></pre>
 	<h3>Get a colour range</h3>
 
 	<h5>Code</h5>
-	<pre><code>$c1 = new Helpful_Color(0, 0, 255);
-$c2 = new Helpful_Color(0, 255, 0);
-$range = Helpful_Color::range($c1, $c2, 10);
+	<pre><code>$c1 = new Color(0, 0, 255);
+$c2 = new Color(0, 255, 0);
+$range = Color::range($c1, $c2, 10);
 foreach ($range as $cr){
 	print $cr->getHex(true);
 	print ', ';
@@ -86,9 +86,9 @@ foreach ($range as $cr){
 
 	<h5>Output</h5>
 	<p><?php
-	$c1 = new Helpful_Color(0, 0, 255);
-	$c2 = new Helpful_Color(0, 255, 0);
-	$range = Helpful_Color::range($c1, $c2, 10);
+	$c1 = new Color(0, 0, 255);
+	$c2 = new Color(0, 255, 0);
+	$range = Color::range($c1, $c2, 10);
 	foreach ($range as $cr){
 		print $cr->getHex(true);
 		print ', ';

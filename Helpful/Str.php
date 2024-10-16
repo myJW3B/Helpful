@@ -46,13 +46,13 @@ class Str
 	 * Clean a URL string.
 	 *
 	 * @param string $str The string to clean.
-	 * @return string The cleaned URL.
+	 * @return string|null The cleaned URL.
 	 */
-	public static function clean_url(string $str): string
+	public static function clean_url(string $str): string|null
 	{
 		// Trim whitespace and replace spaces with hyphens
 		$str = trim($str);
-		$str = preg_replace('/\s+/', '-', $str); // Normalize spaces to single hyphens
+		$str = preg_replace('/\s+/', '-', (string) $str); // Normalize spaces to single hyphens
 		// Remove invalid URL characters
 		$str = preg_replace('/[^a-zA-Z0-9-_]+/', '', $str); // Allow alphanumeric, hyphen, and underscore
 		// Remove consecutive hyphens

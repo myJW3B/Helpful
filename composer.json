@@ -20,7 +20,8 @@
 		"php": "^8.0"
 	},
 	"require-dev": {
-		"phpstan/phpstan": "^1.12"
+		"phpstan/phpstan": "^1.12",
+		"clean/phpdoc-md": "^0.19"
 	},
 	"scripts": {
 		"analyse": "phpstan analyse",

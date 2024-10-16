@@ -5,3 +5,5 @@ parameters:
 
 	ignoreErrors:
 		- '#Call to an undefined method#' # Ignoring some specific errors if needed
+		#- '#Parameter \#3 $subject of function preg_replace expects array|string, string|null given#'
+	reportUnmatchedIgnoredErrors: false

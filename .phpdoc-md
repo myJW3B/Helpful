@@ -1,0 +1,14 @@
+<?php
+return (object)[
+    'rootNamespace' => 'JW3B\Helpful',
+    'destDirectory' => 'docs',
+    'format' => 'github',
+    'classes' => [
+        '\JW3B\Helpful\Color',
+        '\JW3B\Helpful\Files',
+        '\JW3B\Helpful\HTML',
+        '\JW3B\Helpful\Images',
+        '\JW3B\Helpful\SQL',
+        '\JW3B\Helpful\Str',
+    ],
+];
