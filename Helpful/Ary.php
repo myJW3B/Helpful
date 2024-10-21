@@ -12,8 +12,8 @@ Class Ary {
 	*/
 	public static function flop_vals(array $ary): array
 	{
-		$keys = array_keys($colors);
-		$values = array_reverse(array_values($colors));
+		$keys = array_keys($ary);
+		$values = array_reverse(array_values($ary));
 		return array_combine($keys, $values);
 		// return array_combine(array_keys($colors), array_reverse(array_values($colors)));
 	}
