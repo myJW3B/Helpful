@@ -5,9 +5,9 @@ namespace JW3B\Helpful;
 Class Ary {
 	
 	/**
-	 * Clean a text string.
+	 * Preserving the keys and flop the values in reverse order.
 	 *
-	 * @param array $ary Array that keep the keys in the same order, and flop the values.
+	 * @param array $ary Array  
 	 * @return array The new array.
 	*/
 	public static function flop_vals(array $ary): array
