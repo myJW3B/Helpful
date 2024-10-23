@@ -1,11 +1,4 @@
-# JW3B\Helpful\Images  
-
-
-
-
-
-
-
+# JW3B\Helpful\Images
 ## Methods
 
 | Name | Description |
@@ -20,23 +13,19 @@
 
 
 
-### Images::get_large_img  
-
+### Images::get_large_img
 **Description**
 
 ```php
 public static get_large_img (string $img)
 ```
 
-Get the large version of an image. 
-
- 
+Get the large version of an image.
 
 **Parameters**
 
 * `(string) $img`
-: The path to the image.  
-
+: The path to the image.
 **Return Values**
 
 `string`
@@ -47,23 +36,19 @@ Get the large version of an image.
 <hr />
 
 
-### Images::get_mime_type  
-
+### Images::get_mime_type
 **Description**
 
 ```php
 public static get_mime_type (array $file)
 ```
 
-Get the MIME type of a file. 
-
- 
+Get the MIME type of a file.
 
 **Parameters**
 
 * `(array) $file`
-: The file information.  
-
+: The file information.
 **Return Values**
 
 `string|array`
@@ -74,31 +59,23 @@ Get the MIME type of a file.
 <hr />
 
 
-### Images::resize_image  
-
+### Images::resize_image
 **Description**
 
 ```php
 public resize_image (string $dir, string $filename, array $sizes, array $make_webp, string $remove_from_beginning)
 ```
 
-Resize an image using ImageMagick. 
-
- 
+Resize an image using ImageMagick.
 
 **Parameters**
 
 * `(string) $dir`
-: The directory the file is in.  
-* `(string) $filename`
-: The filename.  
-* `(array) $sizes`
-: The sizes to resize to.  
-* `(array) $make_webp`
-: Options for converting to webp.  
-* `(string) $remove_from_beginning`
-: Path to remove from the beginning of the file path.  
-
+: The directory the file is in.* `(string) $filename`
+: The filename.* `(array) $sizes`
+: The sizes to resize to.* `(array) $make_webp`
+: Options for converting to webp.* `(string) $remove_from_beginning`
+: Path to remove from the beginning of the file path.
 **Return Values**
 
 `array`
@@ -109,27 +86,21 @@ Resize an image using ImageMagick.
 <hr />
 
 
-### Images::resize_uploaded_image  
-
+### Images::resize_uploaded_image
 **Description**
 
 ```php
 public resize_uploaded_image (array $file, string $dir, array $opts)
 ```
 
-Resize and upload an image. 
-
- 
+Resize and upload an image.
 
 **Parameters**
 
 * `(array) $file`
-: The file information (e.g., $_FILES['input-name']).  
-* `(string) $dir`
-: The directory to upload to.  
-* `(array) $opts`
-: Options for resizing and conversion.  
-
+: The file information (e.g., $_FILES['input-name']).* `(string) $dir`
+: The directory to upload to.* `(array) $opts`
+: Options for resizing and conversion.
 **Return Values**
 
 `string|array`
@@ -140,23 +111,19 @@ Resize and upload an image.
 <hr />
 
 
-### Images::set_im  
-
+### Images::set_im
 **Description**
 
 ```php
 public set_im (string $val)
 ```
 
-Set the ImageMagick command. 
-
- 
+Set the ImageMagick command.
 
 **Parameters**
 
 * `(string) $val`
-: The ImageMagick command.  
-
+: The ImageMagick command.
 **Return Values**
 
 `$this`
@@ -167,27 +134,21 @@ Set the ImageMagick command.
 <hr />
 
 
-### Images::webpImage  
-
+### Images::webpImage
 **Description**
 
 ```php
 public static webpImage (string $source, int $quality, bool $removeOld)
 ```
 
-Convert an image to webp using GD. 
-
- 
+Convert an image to webp using GD.
 
 **Parameters**
 
 * `(string) $source`
-: The path to the original image.  
-* `(int) $quality`
-: The quality of the webp image (0-100).  
-* `(bool) $removeOld`
-: Whether to remove the original image.  
-
+: The path to the original image.* `(int) $quality`
+: The quality of the webp image (0-100).* `(bool) $removeOld`
+: Whether to remove the original image.
 **Return Values**
 
 `string|bool`

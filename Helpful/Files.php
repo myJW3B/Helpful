@@ -16,12 +16,12 @@ class Files {
 	 */
 	public static function check_file(string $dir, string $name): string
 	{
-		$fullPath = $dir . DIRECTORY_SEPARATOR . $name;
+		$fullPath = $dir.DIRECTORY_SEPARATOR.$name;
 		if (is_file($fullPath)) {
 			$n = 1; // Start at 1, since 0 would be the original filename
 			do {
-				$newName = $n . $name;
-				$fullPath = $dir . DIRECTORY_SEPARATOR . $newName;
+				$newName = $n.$name;
+				$fullPath = $dir.DIRECTORY_SEPARATOR.$newName;
 				$n++;
 			} while (is_file($fullPath));
 			return $newName;
@@ -66,7 +66,7 @@ class Files {
 			return [];
 		}
 
-		foreach (glob($path . $match) as $file) {
+		foreach (glob($path.$match) as $file) {
 			if (is_dir($file)) {
 				$more = self::tree($file, $match);
 				$list['dir'][basename($file)] = $more;
@@ -88,8 +88,8 @@ class Files {
 	{
 		$year = date('Y');
 		$month = date('n');
-		$yearDir = $destination . DIRECTORY_SEPARATOR . $year;
-		$monthDir = $yearDir . DIRECTORY_SEPARATOR . $month;
+		$yearDir = $destination.DIRECTORY_SEPARATOR.$year;
+		$monthDir = $yearDir.DIRECTORY_SEPARATOR.$month;
 
 		if (!is_dir($monthDir)) {
 			mkdir($monthDir, 0755, true); // Create year/month directory structure
@@ -105,12 +105,12 @@ class Files {
 	 */
 	public static function removeEmptySubfolders(string $path): void
 	{
-		$path = rtrim($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
-		$dirs = array_diff(glob($path . '*', GLOB_ONLYDIR), ['.', '..']);
+		$path = rtrim($path, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+		$dirs = array_diff(glob($path.'*', GLOB_ONLYDIR), ['.', '..']);
 		foreach ($dirs as $dir) {
 			self::removeEmptySubfolders($dir);
 		}
-		if (count(glob($path . '*')) === 0) {
+		if (count(glob($path.'*')) === 0) {
 			rmdir($path);
 		}
 	}
@@ -132,7 +132,7 @@ class Files {
 
 		$files = array_diff(scandir($dir), ['.', '..']);
 		foreach ($files as $file) {
-			$filePath = $dir . DIRECTORY_SEPARATOR . $file;
+			$filePath = $dir.DIRECTORY_SEPARATOR.$file;
 			if (is_dir($filePath)) {
 				self::deleteDir($filePath, true);
 			} else {
@@ -153,9 +153,9 @@ class Files {
 	 * Re-arranges files array for image uploads.
 	 * $file_ary = reArrayFiles($_FILES['file']);
 	 * foreach ($file_ary as $file) {
-	 * 	 print 'File Name: ' . $file['name'];
-	 * 	 print 'File Type: ' . $file['type'];
-	 * 	 print 'File Size: ' . $file['size'];
+	 * 	 print 'File Name: '.$file['name'];
+	 * 	 print 'File Type: '.$file['type'];
+	 * 	 print 'File Size: '.$file['size'];
 	 * }
 	 *
 	 * @param array $file_post $_FILES array.
@@ -201,9 +201,9 @@ class Files {
 					continue; // Ignore "." and ".."
 				}
 				if (is_dir($file)) {
-					$zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
+					$zip->addEmptyDir(str_replace($source.'/', '', $file.'/'));
 				} elseif (is_file($file)) {
-					$zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
+					$zip->addFromString(str_replace($source.'/', '', $file), file_get_contents($file));
 				}
 			}
 		} elseif (is_file($source)) {

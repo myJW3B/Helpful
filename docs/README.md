@@ -1,8 +1,10 @@
 # JW3B\Helpful
-
-* [Color](Color.md) 
-* [Files](Files.md) 
-* [HTML](HTML.md) 
-* [Images](Images.md) 
-* [SQL](SQL.md) 
-* [Str](Str.md) 
+* [Ary](Ary.md)
+* [Color](Color.md)
+* [Files](Files.md)
+* [HTML](HTML.md)
+* [Images](Images.md)
+* [Mail](Mail.md)
+* [Number](Number.md)
+* [SQL](SQL.md)
+* [Str](Str.md)

@@ -1,11 +1,4 @@
-# JW3B\Helpful\HTML  
-
-
-
-
-
-
-
+# JW3B\Helpful\HTML
 ## Methods
 
 | Name | Description |
@@ -20,27 +13,21 @@
 
 
 
-### HTML::breadcrumb  
-
+### HTML::breadcrumb
 **Description**
 
 ```php
 public static breadcrumb (array $pgs, array $right, string $add_class)
 ```
 
-Generates a breadcrumb navigation. 
-
- 
+Generates a breadcrumb navigation.
 
 **Parameters**
 
 * `(array) $pgs`
-: Array of page links and titles.  
-* `(array) $right`
-: Array of right-aligned page links.  
-* `(string) $add_class`
-: Additional CSS classes for styling.  
-
+: Array of page links and titles.* `(array) $right`
+: Array of right-aligned page links.* `(string) $add_class`
+: Additional CSS classes for styling.
 **Return Values**
 
 `string`
@@ -51,35 +38,25 @@ Generates a breadcrumb navigation.
 <hr />
 
 
-### HTML::browse  
-
+### HTML::browse
 **Description**
 
 ```php
 public static browse (int $pageNum, int $totalPerPage, int $howMany, string $b4page, string $afterPage, string $hideLast, array $extra)
 ```
 
-Generates pagination links based on current page and total items. 
-
- 
+Generates pagination links based on current page and total items.
 
 **Parameters**
 
 * `(int) $pageNum`
-: Current page number.  
-* `(int) $totalPerPage`
-: Total items per page.  
-* `(int) $howMany`
-: Total number of items.  
-* `(string) $b4page`
-: Base URL before the page number.  
-* `(string) $afterPage`
-: URL suffix after the page number.  
-* `(string) $hideLast`
-: Option to hide the last page link.  
-* `(array) $extra`
-: Additional parameters for pagination.  
-
+: Current page number.* `(int) $totalPerPage`
+: Total items per page.* `(int) $howMany`
+: Total number of items.* `(string) $b4page`
+: Base URL before the page number.* `(string) $afterPage`
+: URL suffix after the page number.* `(string) $hideLast`
+: Option to hide the last page link.* `(array) $extra`
+: Additional parameters for pagination.
 **Return Values**
 
 `string`
@@ -90,29 +67,22 @@ Generates pagination links based on current page and total items.
 <hr />
 
 
-### HTML::pagination  
-
+### HTML::pagination
 **Description**
 
 ```php
-public pagination (int $item_count, int $limit, int $cur_page, string $link)
+public static pagination (int $item_count, int $limit, int $cur_page, string $link)
 ```
 
-Generates a pagination HTML structure. 
-
- 
+Generates a pagination HTML structure.
 
 **Parameters**
 
 * `(int) $item_count`
-: The total number of items.  
-* `(int) $limit`
-: The number of items per page.  
-* `(int) $cur_page`
-: The current page number.  
-* `(string) $link`
-: The URL pattern for pagination links.  
-
+: The total number of items.* `(int) $limit`
+: The number of items per page.* `(int) $cur_page`
+: The current page number.* `(string) $link`
+: The URL pattern for pagination links.
 **Return Values**
 
 `string|null`
@@ -123,29 +93,22 @@ Generates a pagination HTML structure.
 <hr />
 
 
-### HTML::setUpLinks  
-
+### HTML::setUpLinks
 **Description**
 
 ```php
-public setUpLinks (string $tags, string $b4Link, string $afterLink, string $sep)
+public static setUpLinks (string $tags, string $b4Link, string $afterLink, string $sep)
 ```
 
-Sets up links from a comma-separated list of tags. 
-
- 
+Sets up links from a comma-separated list of tags.
 
 **Parameters**
 
 * `(string) $tags`
-: Comma-separated list of tags.  
-* `(string) $b4Link`
-: Base URL before the tag.  
-* `(string) $afterLink`
-: URL suffix after the tag.  
-* `(string) $sep`
-: Separator used to split the tags.  
-
+: Comma-separated list of tags.* `(string) $b4Link`
+: Base URL before the tag.* `(string) $afterLink`
+: URL suffix after the tag.* `(string) $sep`
+: Separator used to split the tags.
 **Return Values**
 
 `string`
@@ -156,27 +119,21 @@ Sets up links from a comma-separated list of tags.
 <hr />
 
 
-### HTML::svg_img  
-
+### HTML::svg_img
 **Description**
 
 ```php
 public static svg_img (int $width, int $height, string $text)
 ```
 
-Generates an SVG image with a specified width, height, and text. 
-
- 
+Generates an SVG image with a specified width, height, and text.
 
 **Parameters**
 
 * `(int) $width`
-: Width of the SVG image.  
-* `(int) $height`
-: Height of the SVG image.  
-* `(string) $text`
-: Text to display in the SVG.  
-
+: Width of the SVG image.* `(int) $height`
+: Height of the SVG image.* `(string) $text`
+: Text to display in the SVG.
 **Return Values**
 
 `string`
@@ -187,27 +144,21 @@ Generates an SVG image with a specified width, height, and text.
 <hr />
 
 
-### HTML::tagCloud  
-
+### HTML::tagCloud
 **Description**
 
 ```php
-public tagCloud (array $tags, string $b4Link, string $afterLink)
+public static tagCloud (array $tags, string $b4Link, string $afterLink)
 ```
 
-Generates a tag cloud from an associative array of tags and their frequencies. 
-
- 
+Generates a tag cloud from an associative array of tags and their frequencies.
 
 **Parameters**
 
 * `(array) $tags`
-: Associative array of tags and their frequency counts.  
-* `(string) $b4Link`
-: Base URL before the tag.  
-* `(string) $afterLink`
-: URL suffix after the tag.  
-
+: Associative array of tags and their frequency counts.* `(string) $b4Link`
+: Base URL before the tag.* `(string) $afterLink`
+: URL suffix after the tag.
 **Return Values**
 
 `string`

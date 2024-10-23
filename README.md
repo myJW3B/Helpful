@@ -1,10 +1,23 @@
-# Helpful
-Some helpful classes for html, sql and some useful tools for everyday php.
-
 # JW3B\Helpful
-Newly added [Ary](Helpful/Ary.php) class not comiled for docs yet.
+* [Ary](docs/Ary.md)
+* [Color](docs/Color.md)
+* [Files](docs/Files.md)
+* [HTML](docs/HTML.md)
+* [Images](docs/Images.md)
+* [Mail](docs/Mail.md)
+* [Number](docs/Number.md)
+* [SQL](docs/SQL.md)
+* [Str](docs/Str.md)
 
-## [Files](docs/Files.md) 
+
+## [Ary](docs/Ary.md) <small> Array</small>
+| Name | Description |
+|------|-------------|
+|[arrayToObject](docs/Ary.md#aryarraytoobject)|Convert an array to an object.|
+|[flop_vals](docs/Ary.md#aryflop_vals)|Preserving the keys and flop the values in reverse order.|
+|[objectToArray](docs/Ary.md#aryobjecttoarray)|Convert an object to an array.|
+
+## [Files](docs/Files.md)
 | Name                                                              | Description                                                        |
 | ----------------------------------------------------------------- | ------------------------------------------------------------------ |
 | [check_file](docs/Files.md#filescheck_file)                       | Puts a number before the filename if it exists.                    |
@@ -16,7 +29,7 @@ Newly added [Ary](Helpful/Ary.php) class not comiled for docs yet.
 | [tree](docs/Files.md#filestree)                                   | Reads all files and folders in a directory.                        |
 | [zip](docs/Files.md#fileszip)                                     | Zips a directory or file.                                          |
 
-## [HTML](docs/HTML.md) 
+## [HTML](docs/HTML.md)
 | Name                                      | Description                                                                    |
 | ----------------------------------------- | ------------------------------------------------------------------------------ |
 | [breadcrumb](docs/HTML.md#htmlbreadcrumb) | Generates a breadcrumb navigation.                                             |
@@ -26,7 +39,7 @@ Newly added [Ary](Helpful/Ary.php) class not comiled for docs yet.
 | [svg_img](docs/HTML.md#htmlsvg_img)       | Generates an SVG image with a specified width, height, and text.               |
 | [tagCloud](docs/HTML.md#htmltagcloud)     | Generates a tag cloud from an associative array of tags and their frequencies. |
 
-## [Images](docs/Images.md) 
+## [Images](docs/Images.md)
 | Name                                                                | Description                        |
 | ------------------------------------------------------------------- | ---------------------------------- |
 | [get_large_img](docs/Images.md#imagesget_large_img)                 | Get the large version of an image. |
@@ -36,29 +49,59 @@ Newly added [Ary](Helpful/Ary.php) class not comiled for docs yet.
 | [set_im](docs/Images.md#imagesset_im)                               | Set the ImageMagick command.       |
 | [webpImage](docs/Images.md#imageswebpimage)                         | Convert an image to webp using GD. |
 
-## [SQL](docs/SQL.md) 
+## [Mail](docs/Mail.md)
+| Name | Description |
+|------|-------------|
+|[send](docs/Mail.md#mailsend)|Send an email.|
+
+## [Number](docs/Number.md)
+| Name | Description |
+|------|-------------|
+|[numberToWord](docs/Number.md#numbernumbertoword)|Convert a number to its word representation.|
+|[sq](docs/Number.md#numbersq)|Calculate the price per square foot.|
+
+## [SQL](docs/SQL.md)
 | Name                              | Description                                        |
 | --------------------------------- | -------------------------------------------------- |
 | [decimal](docs/SQL.md#sqldecimal) | Format a decimal number for USA currency.          |
 | [format](docs/SQL.md#sqlformat)   | Format a value based on the specified format type. |
 
-## [Str](docs/Str.md) 
-| Name                                                  | Description                                      |
-| ----------------------------------------------------- | ------------------------------------------------ |
-| [arrayToObject](docs/Str.md#strarraytoobject)         | Convert an array to an object.                   |
-| [clean_url](docs/Str.md#strclean_url)                 | Clean a URL string.                              |
-| [e](docs/Str.md#stre)                                 | Clean a text string.                             |
-| [form_element_name](docs/Str.md#strform_element_name) | Generate a form element name from a string.      |
-| [mail2](docs/Str.md#strmail2)                         | Send an email.                                   |
-| [objectToArray](docs/Str.md#strobjecttoarray)         | Convert an object to an array.                   |
-| [p](docs/Str.md#strp)                                 | Print a variable in a readable format.           |
-| [parse_my_url](docs/Str.md#strparse_my_url)           | Parse the current URL into an array of segments. |
-| [random_string](docs/Str.md#strrandom_string)         | Generate a random string.                        |
-| [removePound](docs/Str.md#strremovepound)             | Remove pound signs and dashes from a string.     |
-| [sq](docs/Str.md#strsq)                               | Calculate the price per square foot.             |
+## [Str](docs/Str.md)
+> Some functions are heavily influenced by Laravel's [illuminate\support\Str](https://github.com/illuminate/support/blob/master/Str.php) Class
 
-## [Color](docs/Color.md) 
+| Name | Description |
+|------|-------------|
+|[camel](docs/Str.md#strcamel)|Convert a value to camel case.|
+|[clean_url](docs/Str.md#strclean_url)|Clean a URL string.|
+|[e](docs/Str.md#stre)|Clean a text string.|
+|[form_element_name](docs/Str.md#strform_element_name)|Generate a form element name from a string.|
+|[fromBase64](docs/Str.md#strfrombase64)|Decode the given Base64 encoded string.|
+|[headline](docs/Str.md#strheadline)|Convert various string formats to a capitalized headline.|
+|[kebab](docs/Str.md#strkebab)|Convert a camelCase string to kebab-case.|
+|[lcfirst](docs/Str.md#strlcfirst)|Make a string's first character lowercase.|
+|[length](docs/Str.md#strlength)|Return the length of the given string.|
+|[limit](docs/Str.md#strlimit)|Limit the number of characters in a string.|
+|[lower](docs/Str.md#strlower)|Convert the given string to lower-case.|
+|[ltrim](docs/Str.md#strltrim)|Remove all whitespace from the beginning of a string.|
+|[p](docs/Str.md#strp)|Print a variable in a readable format.|
+|[parse_my_url](docs/Str.md#strparse_my_url)|Parse the current URL into an array of segments.|
+|[randomString](docs/Str.md#strrandomstring)|Generate a random string.|
+|[removePound](docs/Str.md#strremovepound)|Remove pound signs and dashes from a string.|
+|[rtrim](docs/Str.md#strrtrim)|Remove all whitespace from the end of a string.|
+|[snake](docs/Str.md#strsnake)|Convert a string to snake case.|
+|[studly](docs/Str.md#strstudly)|Convert a value to studly caps case.|
+|[substr](docs/Str.md#strsubstr)|Returns the portion of the string specified by the start and length parameters.|
+|[swap](docs/Str.md#strswap)|Swap keywords in a string according to a mapping array.|
+|[title](docs/Str.md#strtitle)|Convert the given string to proper case.|
+|[toBase64](docs/Str.md#strtobase64)|Convert the given string to Base64 encoding.|
+|[trim](docs/Str.md#strtrim)|Remove all whitespace from both ends of a string.|
+|[ucfirst](docs/Str.md#strucfirst)|Make a string's first character uppercase.|
+|[ucsplit](docs/Str.md#strucsplit)|Split a string into pieces by uppercase characters.|
+|[upper](docs/Str.md#strupper)|Convert the given string to upper-case.|
+|[wordWrap](docs/Str.md#strwordwrap)|Wrap a string to a given number of characters using a specified line break.|
 
+
+## [Color](docs/Color.md)
 > Modified and updated to PHP 8 from https://gist.github.com/425464 (c) Rowan Manning
 
 | Name                                          | Description                                                             |

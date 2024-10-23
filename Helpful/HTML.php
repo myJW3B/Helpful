@@ -16,10 +16,10 @@ class HTML {
 	 */
 	public static function svg_img(int $width = 100, int $height = 100, string $text = ''): string
 	{
-		$text = htmlspecialchars($text, ENT_QUOTES); // Escape output for security
-		return '<svg width="' . $width . '" height="' . $height . '">
-			<rect x="0" y="0" width="' . $width . '" height="' . $height . '" fill="white"/>
-			<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" stroke="black" stroke-width="1px" fill="currentColor">' . $text . '</text>
+		$text = Str::e($text); // Escape output for security
+		return '<svg width="'.$width.'" height="'.$height.'">
+			<rect x="0" y="0" width="'.$width.'" height="'.$height.'" fill="white"/>
+			<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" stroke="black" stroke-width="1px" fill="currentColor">'.$text.'</text>
 		</svg>';
 	}
 
@@ -33,22 +33,22 @@ class HTML {
 	 */
 	public static function breadcrumb(array $pgs, array $right = [], string $add_class = ''): string
 	{
-		$breadcrumb = '<ol class="breadcrumb' . htmlspecialchars($add_class, ENT_QUOTES) . '">';
+		$breadcrumb = '<ol class="breadcrumb'.Str::e($add_class).'">';
 		if (is_array($pgs)) {
 			foreach ($pgs as $k => $v) {
 				if (is_array($v)) {
-					$breadcrumb .= '<li class="active">' . htmlspecialchars($v[0], ENT_QUOTES) . '</li>';
+					$breadcrumb .= '<li class="active">'.Str::e($v[0]).'</li>';
 				} else {
-					$breadcrumb .= '<li><a href="' . htmlspecialchars($k, ENT_QUOTES) . '">' . htmlspecialchars($v, ENT_QUOTES) . '</a></li>';
+					$breadcrumb .= '<li><a href="'.Str::e($k).'">'.Str::e($v).'</a></li>';
 				}
 			}
 		}
 		if (is_array($right)) {
 			foreach ($right as $k => $v) {
 				if (is_array($v)) {
-					$breadcrumb .= '<li class="pull-right active">' . htmlspecialchars($v[0], ENT_QUOTES) . '</li>';
+					$breadcrumb .= '<li class="pull-right active">'.Str::e($v[0]).'</li>';
 				} else {
-					$breadcrumb .= '<li class="pull-right"><a href="' . htmlspecialchars($k, ENT_QUOTES) . '">' . htmlspecialchars($v, ENT_QUOTES) . '</a></li>';
+					$breadcrumb .= '<li class="pull-right"><a href="'.Str::e($k).'">'.Str::e($v).'</a></li>';
 				}
 			}
 		}
@@ -65,14 +65,14 @@ class HTML {
 	 * @param string $sep Separator used to split the tags.
 	 * @return string HTML string of links.
 	 */
-	public function setUpLinks(string $tags, string $b4Link, string $afterLink = '/', string $sep = ','): string
+	public static function setUpLinks(string $tags, string $b4Link, string $afterLink = '/', string $sep = ','): string
 	{
 		$tt = explode($sep, $tags);
 		$links = [];
 		foreach ($tt as $k2) {
 			if ($k2 !== '') {
-				$rp = $this->removePound($k2);
-				$links[] = '<a href="' . htmlspecialchars($b4Link . Str::clean_url($rp) . $afterLink, ENT_QUOTES) . '">' . htmlspecialchars($rp, ENT_QUOTES) . '</a>';
+				$rp = Str::removePound($k2);
+				$links[] = '<a href="'.Str::e($b4Link.Str::clean_url($rp).$afterLink).'">'.Str::e($rp).'</a>';
 			}
 		}
 		return implode(', ', $links); // Join links with a comma and space
@@ -86,7 +86,7 @@ class HTML {
 	 * @param string $afterLink URL suffix after the tag.
 	 * @return string HTML string of the tag cloud or a message if no tags are found.
 	 */
-	public function tagCloud(array $tags, string $b4Link, string $afterLink = '/'): string
+	public static function tagCloud(array $tags, string $b4Link, string $afterLink = '/'): string
 	{
 		if (!is_array($tags) || count($tags) === 0) {
 			return 'No Tags Found';
@@ -117,8 +117,8 @@ class HTML {
 
 		foreach ($Rtags as $k => $v) {
 			$size = $min_size + (($v - $min_qty) * $step);
-			$rp = $this->removePound($k);
-			$ret .= '<a href="' . htmlspecialchars($b4Link . Str::clean_url($rp) . $afterLink, ENT_QUOTES) . '" class="load-page" title="' . htmlspecialchars($rp, ENT_QUOTES) . ' tagged ' . htmlspecialchars($v, ENT_QUOTES) . ' times" rel="tag" style="font-size: ' . $size . '%">' . htmlspecialchars($rp, ENT_QUOTES) . '</a> ';
+			$rp = Str::removePound($k);
+			$ret .= '<a href="'.Str::e($b4Link.Str::clean_url($rp).$afterLink).'" class="load-page" title="'.Str::e($rp).' tagged '.Str::e($v).' times" rel="tag" style="font-size: '.$size.'%">'.Str::e($rp).'</a> ';
 		}
 		return $ret;
 	}
@@ -137,11 +137,11 @@ class HTML {
 	 */
 	public static function browse(int $pageNum, int $totalPerPage, int $howMany, string $b4page, string $afterPage = "", string $hideLast = '', array $extra = []): string
 	{
-		$divClass = isset($extra['divClass']) ? ' ' . htmlspecialchars($extra['divClass'], ENT_QUOTES) : ' justify-content-center';
-		$b4 = isset($extra['b4']) ? htmlspecialchars($extra['b4'], ENT_QUOTES) : '';
-		$afterPg = isset($extra['after']) ? htmlspecialchars($extra['after'], ENT_QUOTES) : '';
-		$ret = '<nav aria-label="Paging Current Section">' . $b4 . '
-			<ul class="pagination' . $divClass . '">';
+		$divClass = isset($extra['divClass']) ? ' '.Str::e($extra['divClass']) : ' justify-content-center';
+		$b4 = isset($extra['b4']) ? Str::e($extra['b4']) : '';
+		$afterPg = isset($extra['after']) ? Str::e($extra['after']) : '';
+		$ret = '<nav aria-label="Paging Current Section">'.$b4.'
+			<ul class="pagination'.$divClass.'">';
 		$maxPage = ceil($howMany / $totalPerPage);
 		// First page
 		if ($pageNum === 1) {
@@ -149,27 +149,27 @@ class HTML {
 			<li class="page-item active"><a class="page-link">1</a></li>';
 		} else {
 			$prev = $pageNum - 1;
-			$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . $prev . $afterPage, ENT_QUOTES) . '">Prev</a></li>
-			<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . '1' . $afterPage, ENT_QUOTES) . '" title="Go To Page 1">1</a></li>';
+			$ret .= '<li class="page-item"><a class="page-link" href="'.Str::e($b4page.$prev.$afterPage).'">Prev</a></li>
+			<li class="page-item"><a class="page-link" href="'.Str::e($b4page.'1'.$afterPage).'" title="Go To Page 1">1</a></li>';
 		}
 		for ($x = $pageNum - 3; $x < $pageNum + 3; $x++) {
 			if ($x > 1 && $x < $maxPage) {
 				if ($x === $pageNum) {
-					$ret .= '<li class="page-item active"><a class="page-link">' . $x . '</a></li>';
+					$ret .= '<li class="page-item active"><a class="page-link">'.$x.'</a></li>';
 				} else {
-					$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . $x . $afterPage, ENT_QUOTES) . '" title="Go To Page ' . $x . '">' . $x . '</a></li>';
+					$ret .= '<li class="page-item"><a class="page-link" href="'.Str::e($b4page.$x.$afterPage).'" title="Go To Page '.$x.'">'.$x.'</a></li>';
 				}
 			}
 		}
 		if ($maxPage !== 0 && $hideLast === '') {
 			if ($pageNum === (int) $maxPage) {
-				$ret .= '<li class="page-item disabled"><a class="page-link">' . $maxPage . '</a></li>';
+				$ret .= '<li class="page-item disabled"><a class="page-link">'.$maxPage.'</a></li>';
 			} else {
-				$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . $maxPage . $afterPage, ENT_QUOTES) . '" title="Go To Page ' . $maxPage . '">' . $maxPage . '</a></li>';
+				$ret .= '<li class="page-item"><a class="page-link" href="'.Str::e($b4page.$maxPage.$afterPage).'" title="Go To Page '.$maxPage.'">'.$maxPage.'</a></li>';
 			}
 		}
 		if ($pageNum < $maxPage) {
-			$ret .= '<li class="page-item"><a class="page-link" href="' . htmlspecialchars($b4page . ($pageNum + 1) . $afterPage, ENT_QUOTES) . '">Next</a></li>';
+			$ret .= '<li class="page-item"><a class="page-link" href="'.Str::e($b4page.($pageNum + 1).$afterPage).'">Next</a></li>';
 		} else {
 			$ret .= '<li class="page-item disabled"><a class="page-link">Next</a></li>';
 		}
@@ -195,45 +195,38 @@ class HTML {
  	*
  	* @return string|null The generated HTML for pagination, or null if there are no pages to display.
  	*/
-	public function pagination(int $item_count, int $limit, int $cur_page, string $link): ?string
+	public static function pagination(int $item_count, int $limit, int $cur_page, string $link): ?string
 	{
 		$page_count = ceil($item_count / $limit);
 		$current_range = [
 			($cur_page - 2 < 1 ? 1 : $cur_page - 2),
 			($cur_page + 2 > $page_count ? $page_count : $cur_page + 2)
 		];
-
 		// First and Last pages
 		$first_page = $cur_page > 3
-			? '<li><a href="' . htmlspecialchars(sprintf($link, 1), ENT_QUOTES) . '">1</a></li>'
+			? '<li><a href="'.Str::e(sprintf($link, 1)).'">1</a></li>'
 			. ($cur_page < 5 ? '' : '<li class="disabled"><a href="#">...</a></li>')
 			: null;
-
 		$last_page = $cur_page < $page_count - 2
 			? ($cur_page > $page_count - 4 ? '' : '<li class="disabled"><a href="#">...</a></li>')
-			. '<li><a href="' . htmlspecialchars(sprintf($link, $page_count), ENT_QUOTES) . '">' . $page_count . '</a></li>'
+			. '<li><a href="'.Str::e(sprintf($link, $page_count)).'">'.$page_count.'</a></li>'
 			: null;
-
 		// Previous and next page
 		$previous_page = $cur_page > 1
-			? '<li><a href="' . htmlspecialchars(sprintf($link, ($cur_page - 1)), ENT_QUOTES) . '">&laquo;</a></li>'
+			? '<li><a href="'.Str::e(sprintf($link, ($cur_page - 1))).'">&laquo;</a></li>'
 			: null;
-
 		$next_page = $cur_page < $page_count
-			? '<li><a href="' . htmlspecialchars(sprintf($link, ($cur_page + 1)), ENT_QUOTES) . '">&raquo;</a></li>'
+			? '<li><a href="'.Str::e(sprintf($link, ($cur_page + 1))).'">&raquo;</a></li>'
 			: null;
-
 		// Display pages that are in range
 		$pages = [];
 		for ($x = $current_range[0]; $x <= $current_range[1]; ++$x) {
 			$active = $x == $cur_page ? ' class="active"' : '';
-			$pages[] = '<li' . $active . '><a href="' . htmlspecialchars(sprintf($link, $x), ENT_QUOTES) . '">' . $x . '</a></li>';
+			$pages[] = '<li'.$active.'><a href="'.Str::e(sprintf($link, $x)).'">'.$x.'</a></li>';
 		}
-
 		if ($page_count > 1) {
-			return '<ul class="pagination">' . $previous_page . $first_page . implode('', $pages) . $last_page . $next_page . '</ul>';
+			return '<ul class="pagination">'.$previous_page.$first_page.implode('', $pages).$last_page.$next_page.'</ul>';
 		}
-
 		return null; // Return null if no pages to display
 	}
 }

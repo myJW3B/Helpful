@@ -1,11 +1,4 @@
-# JW3B\Helpful\Files  
-
-
-
-
-
-
-
+# JW3B\Helpful\Files
 ## Methods
 
 | Name | Description |
@@ -22,25 +15,20 @@
 
 
 
-### Files::check_file  
-
+### Files::check_file
 **Description**
 
 ```php
 public static check_file (string $dir, string $name)
 ```
 
-Puts a number before the filename if it exists. 
-
- 
+Puts a number before the filename if it exists.
 
 **Parameters**
 
 * `(string) $dir`
-: Directory path.  
-* `(string) $name`
-: Filename.  
-
+: Directory path.* `(string) $name`
+: Filename.
 **Return Values**
 
 `string`
@@ -51,25 +39,20 @@ Puts a number before the filename if it exists.
 <hr />
 
 
-### Files::deleteDir  
-
+### Files::deleteDir
 **Description**
 
 ```php
 public static deleteDir (string $dir, bool $rec)
 ```
 
-Deletes a directory and its contents. 
-
- 
+Deletes a directory and its contents.
 
 **Parameters**
 
 * `(string) $dir`
-: Directory to delete.  
-* `(bool) $rec`
-: Whether to delete recursively.  
-
+: Directory to delete.* `(bool) $rec`
+: Whether to delete recursively.
 **Return Values**
 
 `bool`
@@ -86,23 +69,19 @@ Deletes a directory and its contents.
 <hr />
 
 
-### Files::make_yr_directory  
-
+### Files::make_yr_directory
 **Description**
 
 ```php
 public static make_yr_directory (string $destination)
 ```
 
-Creates a directory structure based on the current year and month. 
-
- 
+Creates a directory structure based on the current year and month.
 
 **Parameters**
 
 * `(string) $destination`
-: Base directory.  
-
+: Base directory.
 **Return Values**
 
 `string`
@@ -113,23 +92,19 @@ Creates a directory structure based on the current year and month.
 <hr />
 
 
-### Files::mk_dir_writable  
-
+### Files::mk_dir_writable
 **Description**
 
 ```php
 public static mk_dir_writable (string $dir)
 ```
 
-Creates a writable directory. 
-
- 
+Creates a writable directory.
 
 **Parameters**
 
 * `(string) $dir`
-: Directory to create.  
-
+: Directory to create.
 **Return Values**
 
 `bool`
@@ -146,28 +121,24 @@ Creates a writable directory.
 <hr />
 
 
-### Files::reArrayFiles  
-
+### Files::reArrayFiles
 **Description**
 
 ```php
 public static reArrayFiles (array $file_post)
 ```
 
-Re-arranges files array for image uploads. 
-
+Re-arranges files array for image uploads.
 $file_ary = reArrayFiles($_FILES['file']);  
 foreach ($file_ary as $file) {  
-	 print 'File Name: ' . $file['name'];  
-	 print 'File Type: ' . $file['type'];  
-	 print 'File Size: ' . $file['size'];  
-} 
-
+	 print 'File Name: '.$file['name'];  
+	 print 'File Type: '.$file['type'];  
+	 print 'File Size: '.$file['size'];  
+}
 **Parameters**
 
 * `(array) $file_post`
-: $_FILES array.  
-
+: $_FILES array.
 **Return Values**
 
 `array`
@@ -178,23 +149,19 @@ foreach ($file_ary as $file) {
 <hr />
 
 
-### Files::removeEmptySubfolders  
-
+### Files::removeEmptySubfolders
 **Description**
 
 ```php
 public static removeEmptySubfolders (string $path)
 ```
 
-Removes empty subfolders. 
-
- 
+Removes empty subfolders.
 
 **Parameters**
 
 * `(string) $path`
-: Path to check.  
-
+: Path to check.
 **Return Values**
 
 `void`
@@ -203,25 +170,20 @@ Removes empty subfolders.
 <hr />
 
 
-### Files::tree  
-
+### Files::tree
 **Description**
 
 ```php
 public static tree (string $path, string $match)
 ```
 
-Reads all files and folders in a directory. 
-
- 
+Reads all files and folders in a directory.
 
 **Parameters**
 
 * `(string) $path`
-: Path without the trailing slash.  
-* `(string) $match`
-: Pattern to match files.  
-
+: Path without the trailing slash.* `(string) $match`
+: Pattern to match files.
 **Return Values**
 
 `array`
@@ -232,26 +194,21 @@ Reads all files and folders in a directory.
 <hr />
 
 
-### Files::zip  
-
+### Files::zip
 **Description**
 
 ```php
 public zip (string $source, string $destination)
 ```
 
-Zips a directory or file. 
-
+Zips a directory or file.
 Source: http://stackoverflow.com/questions/1334613/how-to-recursively-zip-a-directory-in-php  
-zip('/folder/to/compress/', './compressed.zip'); 
-
+zip('/folder/to/compress/', './compressed.zip');
 **Parameters**
 
 * `(string) $source`
-: Source directory or file.  
-* `(string) $destination`
-: Destination zip file.  
-
+: Source directory or file.* `(string) $destination`
+: Destination zip file.
 **Return Values**
 
 `bool`

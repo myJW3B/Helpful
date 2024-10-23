@@ -87,7 +87,7 @@ class Color {
 		$red = str_pad(dechex(self::fixRgbValue($red)), 2, '0', STR_PAD_LEFT);
 		$green = str_pad(dechex(self::fixRgbValue($green)), 2, '0', STR_PAD_LEFT);
 		$blue = str_pad(dechex(self::fixRgbValue($blue)), 2, '0', STR_PAD_LEFT);
-		return $red . $green . $blue;
+		return $red.$green.$blue;
 	}
 
 	/**
@@ -104,9 +104,9 @@ class Color {
 		// Check the length of the hex code and parse accordingly.
 		if (strlen($hex) === 6) {
 			$hex = [
-				'red' => $hex[0] . $hex[1],
-				'green' => $hex[2] . $hex[3],
-				'blue' => $hex[4] . $hex[5]
+				'red' => $hex[0].$hex[1],
+				'green' => $hex[2].$hex[3],
+				'blue' => $hex[4].$hex[5]
 			];
 		} elseif (strlen($hex) === 3) {
 			$hex = [
@@ -280,7 +280,7 @@ class Color {
 	 */
 	public function getHex(bool $hash = false): string
 	{
-		return ($hash ? '#' : '') . self::rgbToHex($this->red, $this->green, $this->blue);
+		return ($hash ? '#' : '').self::rgbToHex($this->red, $this->green, $this->blue);
 	}
 
 	/**
@@ -300,7 +300,7 @@ class Color {
 			case 'rgb': return $this->getArray();
 		}
 		$trace = debug_backtrace();
-		trigger_error('Undefined property: ' . __CLASS__ . '::$' . $name . ' in ' . $trace[0]['file'] . ' on line ' . $trace[0]['line'], E_USER_NOTICE);
+		trigger_error('Undefined property: '.__CLASS__.'::$'.$name.' in '.$trace[0]['file'].' on line '.$trace[0]['line'], E_USER_NOTICE);
 		return null;
 	}
 
@@ -320,7 +320,7 @@ class Color {
 			case 'hex': $this->setHex($value); return;
 		}
 		$trace = debug_backtrace();
-		trigger_error('Undefined property: ' . __CLASS__ . '::$' . $name . ' in ' . $trace[0]['file'] . ' on line ' . $trace[0]['line'], E_USER_NOTICE);
+		trigger_error('Undefined property: '.__CLASS__.'::$'.$name.' in '.$trace[0]['file'].' on line '.$trace[0]['line'], E_USER_NOTICE);
 	}
 
 	/**
