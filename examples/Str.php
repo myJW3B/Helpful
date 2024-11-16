@@ -35,7 +35,11 @@ echo JW3B\Helpful\Str::headline("example text");
 echo "\n\n";
 echo 'Example for method kebab():'.PHP_EOL;
 echo 'echo JW3B\Helpful\Str::kebab("exampleText");'.PHP_EOL;
-echo JW3B\Helpful\Str::kebab("example text");
+echo JW3B\Helpful\Str::kebab("exampleText").PHP_EOL;
+echo 'echo JW3B\Helpful\Str::kebab("example text");'.PHP_EOL;
+echo JW3B\Helpful\Str::kebab("example text").PHP_EOL;
+echo 'echo JW3B\Helpful\Str::kebab("example_text");'.PHP_EOL;
+echo JW3B\Helpful\Str::kebab("example_text");
 
 echo "\n\n";
 echo 'Example for method lcfirst():'.PHP_EOL;
