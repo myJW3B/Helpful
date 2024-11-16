@@ -14,8 +14,8 @@ echo JW3B\Helpful\Str::clean_url("example text");
 
 echo "\n\n";
 echo 'Example for method e():'.PHP_EOL;
-echo 'echo JW3B\Helpful\Str::e("example text");'.PHP_EOL;
-echo JW3B\Helpful\Str::e("example text");
+echo 'echo JW3B\Helpful\Str::e(""example \'text\'");'.PHP_EOL;
+echo JW3B\Helpful\Str::e("\"example 'text'");
 
 echo "\n\n";
 echo 'Example for method form_element_name():'.PHP_EOL;
@@ -24,8 +24,8 @@ echo JW3B\Helpful\Str::form_element_name("example text");
 
 echo "\n\n";
 echo 'Example for method fromBase64():'.PHP_EOL;
-echo 'echo JW3B\Helpful\Str::fromBase64("example text");'.PHP_EOL;
-echo JW3B\Helpful\Str::fromBase64("example text");
+echo 'echo JW3B\Helpful\Str::fromBase64("ZXhhbXBsZSB0ZXh0");'.PHP_EOL;
+echo JW3B\Helpful\Str::fromBase64("ZXhhbXBsZSB0ZXh0");
 
 echo "\n\n";
 echo 'Example for method headline():'.PHP_EOL;
@@ -34,13 +34,13 @@ echo JW3B\Helpful\Str::headline("example text");
 
 echo "\n\n";
 echo 'Example for method kebab():'.PHP_EOL;
-echo 'echo JW3B\Helpful\Str::kebab("example text");'.PHP_EOL;
+echo 'echo JW3B\Helpful\Str::kebab("exampleText");'.PHP_EOL;
 echo JW3B\Helpful\Str::kebab("example text");
 
 echo "\n\n";
 echo 'Example for method lcfirst():'.PHP_EOL;
-echo 'echo JW3B\Helpful\Str::lcfirst("example text");'.PHP_EOL;
-echo JW3B\Helpful\Str::lcfirst("example text");
+echo 'echo JW3B\Helpful\Str::lcfirst("EXAMPLE TEXT");'.PHP_EOL;
+echo JW3B\Helpful\Str::lcfirst("EXAMPLE TEXT");
 
 echo "\n\n";
 echo 'Example for method length():'.PHP_EOL;
@@ -50,7 +50,9 @@ echo JW3B\Helpful\Str::length("example text");
 echo "\n\n";
 echo 'Example for method limit():'.PHP_EOL;
 echo 'echo JW3B\Helpful\Str::limit("example text", 4);'.PHP_EOL;
-echo JW3B\Helpful\Str::limit("example text", 4);
+echo JW3B\Helpful\Str::limit("example text", 4).PHP_EOL;
+echo 'echo JW3B\Helpful\Str::limit("example text", 4, "**");'.PHP_EOL;
+echo JW3B\Helpful\Str::limit("example text", 4, "**");
 
 echo "\n\n";
 echo 'Example for method lower():'.PHP_EOL;
