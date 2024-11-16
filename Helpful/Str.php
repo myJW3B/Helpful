@@ -115,13 +115,19 @@ class Str
 	}
 
 	/**
-	 * Convert a camelCase string to kebab-case.
+	 * Convert a camelCase, snake_case, or space separated string to kebab-case.
 	 *
-	 * @param string $string The camelCase string.
+	 * @param string $string The input string.
 	 * @return string The kebab-case string.
 	 */
 	public static function kebab(string $string): string
 	{
+		// Convert snake_case to kebab-case
+		$string = str_replace('_', '-', $string);
+
+		// Convert space separated to kebab-case
+		$string = str_replace(' ', '-', $string);
+
 		// Replace uppercase letters with a hyphen followed by the lowercase equivalent
 		$kebab = strtolower(preg_replace('/([a-z])([A-Z])/', '$1-$2', $string));
 		return $kebab;
