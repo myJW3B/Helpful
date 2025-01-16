@@ -120,9 +120,9 @@ class Images
 			$filename = preg_replace('/[^a-zA-Z0-9\._]/i', '', $file['name']);
 			$dir = Files::make_yr_directory($dir);
 			$filename = Files::check_file($dir, $filename);
-			move_uploaded_file($file['tmp_name'], $dir.$filename);
+			move_uploaded_file($file['tmp_name'], $dir.'/'.$filename);
 
-			if (is_file($dir.$filename)) {
+			if (is_file($dir.'/'.$filename)) {
 				return $this->resize_image($dir, $filename, $opts['sizes'], ['ext' => $check, 'make' => $make_webp], $opts['trim_filepath'] ?? '');
 			} else {
 				return ['error' => 'couldn’t move uploaded file or copy the temp file to the destination.'];
@@ -145,19 +145,23 @@ class Images
 	public function resize_image(string $dir, string $filename, array $sizes, array $make_webp = [], string $remove_from_beginning = ''): array
 	{
 		$created = [];
-		[$width, $height] = getimagesize($dir.$filename);
+		[$width, $height] = getimagesize($dir.'/'.$filename);
 		$total_sizes = count($sizes);
 
 		foreach ($sizes as $pre => $size) {
-			$new_file = $total_sizes > 1 ? $dir.$pre.'-'.$filename : $dir.$pre.'-'.$filename;
+			$new_file = $total_sizes > 1 ? $dir.'/'.$pre.'-'.$filename : $dir.'/'.$pre.'-'.$filename;
 			if ($width > $size || $height > $size) {
-				system($this->magick." ".escapeshellarg($dir.$filename)." -resize ".escapeshellarg($size."x".$size)." -quality 100 ".escapeshellarg($new_file));
-			} else if ($new_file != $dir.$filename) {
-				copy($dir.$filename, $new_file);
+				system($this->magick." ".escapeshellarg($dir.'/'.$filename)." -resize ".escapeshellarg($size."x".$size)." -quality 100 ".escapeshellarg($new_file));
+			} else if ($new_file != $dir.'/'.$filename) {
+				copy($dir.'/'.$filename, $new_file);
 			}
 
 			if ($make_webp['make'] ?? false) {
-				$webp_file = str_replace('.'.$make_webp['ext'], '-webp.'.$make_webp['ext'], $new_file);
+				//$webp_file = str_replace('.'.$make_webp['ext'], '-webp.'.$make_webp['ext'], $new_file);
+				$webp_file = str_replace(
+					search: '.'.$make_webp['ext'],
+					replace: '.webp',
+					subject: $new_file);
 				if (!str_ends_with($new_file, 'webp')) {
 					system($this->magick.' '.escapeshellarg($new_file).' -quality 80 '.escapeshellarg($webp_file));
 				}
